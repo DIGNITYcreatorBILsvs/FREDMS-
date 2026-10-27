@@ -4,13 +4,15 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <!-- ЭТИ ТРИ СТРОЧКИ ЗАСТАВЛЯЮТ БРАУЗЕР НЕ КЭШИРОВАТЬ СТРАНИЦУ -->
+  <!-- ЖЕСТКИЙ ЗАПРЕТ НА КЭШИРОВАНИЕ -->
   <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
   <meta http-equiv="Pragma" content="no-cache">
   <meta http-equiv="Expires" content="0">
 
   <title>ОШИБКА</title>
-  <link rel="stylesheet" href="style.css?v=3">
+  
+  <!-- ?v=99 заставит браузер скачать файл заново -->
+  <link rel="stylesheet" href="style.css?v=99">
 </head>
 <body>
 
@@ -30,6 +32,7 @@
     <p style="color: #ff0000; font-family: monospace;">SYSTEM CRASHED. CONNECTION LOST.</p>
   </div>
 
-  <script src="script.js?v=3"></script>
+  <!-- То же самое для скрипта -->
+  <script src="script.js?v=99"></script>
 </body>
 </html>
