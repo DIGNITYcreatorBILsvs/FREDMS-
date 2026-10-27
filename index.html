@@ -3,19 +3,33 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Моя страница</title>
-  <!-- Добавляем ?v=2 в конец. Теперь браузер поймет, что стили обновились -->
-  <link rel="stylesheet" href="style.css?v=2">
+  
+  <!-- ЭТИ ТРИ СТРОЧКИ ЗАСТАВЛЯЮТ БРАУЗЕР НЕ КЭШИРОВАТЬ СТРАНИЦУ -->
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+  <meta http-equiv="Pragma" content="no-cache">
+  <meta http-equiv="Expires" content="0">
+
+  <title>ОШИБКА</title>
+  <link rel="stylesheet" href="style.css?v=3">
 </head>
 <body>
 
-  <!-- Контейнер для летающего текста -->
-  <div id="text-container"></div>
+  <!-- Экран 1: Угроза -->
+  <div id="warning-screen">
+    <h1>Я ЖЕ ГОВОРИЛ<br>НЕ ЗАХОДИ СЮДА....</h1>
+  </div>
 
-  <!-- Сама кнопка -->
-  <button id="magicBtn">нажми меня</button>
-  
-  <!-- То же самое делаем со скриптом -->
-  <script src="script.js?v=2"></script>
+  <!-- Экран 2: Уходи -->
+  <div id="leave-screen" style="display: none;">
+    <h2 id="leave-text">УХОДИ</h2>
+  </div>
+
+  <!-- Экран 3: Фейковый краш -->
+  <div id="crash-screen" style="display: none;">
+    <h1 style="color: #fff; font-size: 30px;">FATAL ERROR</h1>
+    <p style="color: #ff0000; font-family: monospace;">SYSTEM CRASHED. CONNECTION LOST.</p>
+  </div>
+
+  <script src="script.js?v=3"></script>
 </body>
 </html>
