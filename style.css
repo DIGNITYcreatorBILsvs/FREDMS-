@@ -1,215 +1,73 @@
-/* --- Основные стили --- */
 body {
-  background-color: #000;
+  background-color: #000; /* Черный фон */
+  color: #ff0000; /* Красный текст */
+  font-family: 'Courier New', Courier, monospace; /* Страшный шрифт */
   display: flex;
-  flex-direction: column;
   justify-content: center;
   align-items: center;
   height: 100vh;
   margin: 0;
-  font-family: sans-serif;
-  transition: background-color 0.5s ease;
-  overflow: hidden; 
+  overflow: hidden;
 }
 
-#magicBtn {
-  background-color: transparent;
-  color: red; 
-  border: 2px solid red; 
+#warning-screen {
+  text-align: center;
+  animation: shake 0.5s infinite;
+}
+
+h1 {
+  font-size: 50px;
+  text-shadow: 0 0 10px #ff0000, 0 0 20px #ff0000;
+  margin: 0;
+  line-height: 1.2;
+}
+
+/* Анимация тряски для первого экрана */
+@keyframes shake {
+  0% { transform: translate(1px, 1px) rotate(0deg); }
+  10% { transform: translate(-1px, -2px) rotate(-1deg); }
+  20% { transform: translate(-3px, 0px) rotate(1deg); }
+  30% { transform: translate(3px, 2px) rotate(0deg); }
+  40% { transform: translate(1px, -1px) rotate(1deg); }
+  50% { transform: translate(-1px, 2px) rotate(-1deg); }
+  60% { transform: translate(-3px, 1px) rotate(0deg); }
+  70% { transform: translate(3px, 1px) rotate(-1deg); }
+  80% { transform: translate(-1px, -1px) rotate(1deg); }
+  90% { transform: translate(1px, 2px) rotate(0deg); }
+  100% { transform: translate(1px, -2px) rotate(-1deg); }
+}
+
+/* Экран с данными */
+#data-screen {
+  text-align: center;
   font-size: 28px;
-  padding: 16px 40px;
-  border-radius: 10px;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  z-index: 10;
+  line-height: 1.5;
 }
 
-#magicBtn:hover {
-  background-color: #330000; 
-  color: red; 
-}
-
-/* --- Текст "бета страница" --- */
-#text-container {
-  position: absolute;
-  top: 10%;
-  width: 100%;
-  text-align: center;
-  transition: all 0.8s ease;
-}
-
-.beta-text {
-  color: #00ff00;
-  font-size: 18px;
+.text-line {
+  margin: 15px 0;
   opacity: 0;
-  transition: opacity 0.5s ease;
+  animation: fadeIn 1s forwards;
 }
 
-.beta-text.show {
-  opacity: 1;
+/* Задержки для появления строк */
+.text-line:nth-child(1) { animation-delay: 0.5s; }
+.text-line:nth-child(2) { animation-delay: 1.5s; }
+.text-line:nth-child(3) { animation-delay: 2.5s; }
+.text-line:nth-child(4) { animation-delay: 4s; font-size: 16px; color: #550000; }
+
+.red-text {
+  color: #ff0000;
+  font-weight: bold;
+  text-shadow: 0 0 10px #ff0000;
+  font-size: 32px;
 }
 
-/* --- Таймер --- */
-#timer {
-  color: white;
-  font-size: 24px;
-  margin-top: 20px;
-  opacity: 0;
-  transition: opacity 0.3s ease;
-  z-index: 10;
-}
-
-#timer.show {
-  opacity: 1;
-}
-
-/* --- Взрыв --- */
-.explode {
-  animation: explodeAnim 0.5s forwards;
-}
-
-@keyframes explodeAnim {
-  0% { transform: scale(1); opacity: 1; }
-  50% { transform: scale(1.5); opacity: 0.5; filter: blur(5px); }
-  100% { transform: scale(0); opacity: 0; }
-}
-
-/* --- Контейнер UI (Ползунок остается по центру) --- */
-.ui-container {
-  display: none; 
-  flex-direction: column;
-  align-items: center;
-  width: 80%;
-  max-width: 400px;
-  margin-top: 50px; 
-}
-
-.ui-container.show {
-  display: flex;
-}
-
-/* --- Ползунок --- */
-.slider-container {
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  opacity: 0;
-  transition: opacity 1s ease;
-}
-
-.slider-container.show {
-  opacity: 1;
-}
-
-input[type=range] {
-  -webkit-appearance: none; 
-  width: 100%;
-  background: transparent;
-}
-
-input[type=range]::-webkit-slider-runnable-track {
-  width: 100%;
-  height: 8px;
-  cursor: pointer;
-  background: #005500; 
-  border-radius: 5px;
-  border: 1px solid #00ff00;
-}
-
-input[type=range]::-webkit-slider-thumb {
-  height: 24px;
-  width: 24px;
-  border-radius: 50%;
-  background: #00ff00; 
-  cursor: pointer;
-  -webkit-appearance: none;
-  margin-top: -9px; 
-  box-shadow: 0 0 10px #00ff00; 
-}
-
-/* --- Форма (ТЕПЕРЬ В ПРАВОМ НИЖНЕМ УГЛУ) --- */
-.feedback-container {
-  position: fixed;
-  bottom: 20px;
-  right: 20px;
-  width: 300px; 
-  background-color: rgba(0, 50, 0, 0.6); 
-  border: 1px solid #00ff00; 
-  border-radius: 10px;
-  padding: 15px;
-  display: flex;
-  flex-direction: column;
-  gap: 10px; 
-  box-sizing: border-box;
-  opacity: 0;
-  transform: translateY(20px); /* Легкий эффект выезда снизу */
-  transition: all 0.6s ease;
-  z-index: 100; /* Поверх всего */
-}
-
-.feedback-container.show {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-.feedback-container textarea {
-  width: 100%;
-  height: 60px;
-  background-color: #021a02; 
-  color: #00ff00;
-  border: 1px solid #005500;
-  border-radius: 5px;
-  padding: 10px;
-  font-family: sans-serif;
-  font-size: 14px;
-  resize: none; 
-  outline: none;
-  box-sizing: border-box;
-}
-
-.feedback-container textarea:focus {
-  border-color: #00ff00; 
-  box-shadow: 0 0 5px #00ff00;
-}
-
-.feedback-container textarea::placeholder {
-  color: #008800;
-}
-
-.feedback-container button {
-  background-color: transparent;
-  color: #00ff00;
-  border: 2px solid #00ff00;
-  padding: 10px;
-  border-radius: 5px;
-  cursor: pointer;
+.small {
   font-size: 16px;
-  transition: all 0.3s ease;
+  color: #666;
 }
 
-.feedback-container button:hover {
-  background-color: #00ff00;
-  color: #000;
-}
-
-/* --- Заглушка для телефона --- */
-#mobile-warning {
-  display: none;
-  position: fixed;
-  top: 0; left: 0; width: 100%; height: 100%;
-  background-color: #1a1a1a;
-  color: white;
-  z-index: 9999;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-  padding: 20px;
-  font-size: 20px;
-  box-sizing: border-box;
-}
-#mobile-warning span {
-  font-size: 16px;
-  color: #aaa;
-  margin-top: 15px;
+@keyframes fadeIn {
+  to { opacity: 1; }
 }
